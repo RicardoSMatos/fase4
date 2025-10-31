@@ -71,12 +71,13 @@ O modelo cria tudo: personagens, cenário e trama.
 
 ## 🤖 Modelos Disponíveis
 
-| Modelo | Parâmetros | Qualidade | Velocidade |
-|--------|-----------|-----------|-----------|
-| Fine-tuned GPT-2 | 124M | ⭐⭐⭐⭐⭐ | 🚀🚀🚀 |
-| BLOOM 560M | 560M | ⭐⭐⭐⭐ | 🚀🚀 |
-| BLOOM 1B1 | 1.1B | ⭐⭐⭐⭐⭐ | 🚀 |
-| mGPT | 1.3B | ⭐⭐⭐⭐ | 🚀 |
+| Modelo | Parâmetros | Qualidade | Velocidade | Streamlit Cloud |
+|--------|-----------|-----------|-----------|-----------------|
+| Fine-tuned GPT-2 | 124M | ⭐⭐⭐⭐⭐ | 🚀🚀🚀 | ✅ |
+| **BLOOM 560M** | 560M | ⭐⭐⭐⭐ | 🚀🚀 | ✅ **Recomendado** |
+| GPT-2 PT Small | 124M | ⭐⭐⭐ | 🚀🚀🚀 | ✅ |
+
+> **Nota**: Modelos maiores (BLOOM 1B1, mGPT) foram removidos para compatibilidade com Streamlit Cloud (limite de 1GB RAM). Use-os localmente se necessário.
 
 ## 📚 Documentação
 

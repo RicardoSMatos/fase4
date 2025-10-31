@@ -33,15 +33,21 @@ st.markdown("""
 
 @st.cache_resource
 def load_model(model_choice=None):
-    """Carrega o modelo selecionado"""
+    """Carrega o modelo selecionado com tratamento de erros"""
     try:
         if model_choice:
             return TextGenerator(model_choice), None
         else:
             # Auto-detecta melhor modelo
             return TextGenerator(), None
+    except MemoryError as e:
+        return None, "❌ Erro de memória! O modelo é muito grande para o Streamlit Cloud. Use BLOOM 560M ou GPT-2 Small."
+    except RuntimeError as e:
+        if "out of memory" in str(e).lower():
+            return None, "❌ Memória insuficiente! Modelo muito grande. Tente BLOOM 560M ou GPT-2 Small."
+        return None, f"❌ Erro ao carregar: {str(e)}"
     except Exception as e:
-        return None, str(e)
+        return None, f"❌ Erro: {str(e)}"
 
 def get_available_models():
     """Retorna modelos disponíveis"""
@@ -149,7 +155,16 @@ def main():
             st.success("✅ Usando modelo personalizado!")
             st.caption("Este modelo foi treinado especificamente com histórias criativas.")
         else:
-            st.warning("⚠️ Usando modelo base")
+            if "BLOOM" in selected_model_name:
+                st.success("✅ Modelo BLOOM - Otimizado para Cloud")
+                st.caption("560M parâmetros. Equilibrio ideal entre qualidade e performance no Streamlit Cloud.")
+            elif "GPT-2" in selected_model_name:
+                st.info("ℹ️ Modelo GPT-2 Portuguese Small")
+                st.caption("124M parâmetros. Leve e rápido, ideal para testes.")
+            else:
+                st.warning("⚠️ Usando modelo base")
+            
+            st.info("💡 **Para uso local**: Modelos maiores (BLOOM 1B1, mGPT) disponíveis editando `src/model.py`")
             st.caption("Para melhores resultados, treine o modelo com: `python train_model_script.py`")
         
         st.markdown("---")

@@ -106,14 +106,15 @@ class TextGenerator:
         # GPT-2 Portuguese Small (baseline)
         models["📝 GPT-2 Portuguese Small (124M) - Rápido"] = "pierreguillou/gpt2-small-portuguese"
         
-        # BLOOM - Modelo grande multilíngue com português (RECOMENDADO)
-        models["🌸 BLOOM 560M (Multilíngue) - Melhor Qualidade"] = "bigscience/bloom-560m"
+        # BLOOM 560M - ÚNICO modelo grande compatível com Streamlit Cloud
+        models["🌸 BLOOM 560M (Multilíngue) - Melhor Qualidade ⭐"] = "bigscience/bloom-560m"
         
-        # BLOOM maior
-        models["� BLOOM 1B1 (Multilíngue) - Alta Qualidade (Lento)"] = "bigscience/bloom-1b1"
+        # NOTA: Modelos maiores (BLOOM 1B1, mGPT 1.3B) removidos
+        # Motivo: Excedem limite de RAM do Streamlit Cloud (1GB)
+        # Para usar localmente, descomente as linhas abaixo:
         
-        # Alternativa: mGPT (multilíngue incluindo português)
-        models["🌍 mGPT 1.3B (Multilíngue) - Boa Qualidade"] = "ai-forever/mGPT"
+        # models["🌺 BLOOM 1B1 (Multilíngue) - Alta Qualidade"] = "bigscience/bloom-1b1"
+        # models["🌍 mGPT 1.3B (Multilíngue) - Boa Qualidade"] = "ai-forever/mGPT"
         
         return models
     
